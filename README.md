@@ -1,7 +1,7 @@
-# 微前端 demo  主应用为vue2.x,微应用为vue2.x
+# 微前端 demo  (主应用技术栈为vue2.x,微应用技术栈为vue2.x,主、微都是hash模式)
 ## 项目落地问题汇总
 
-### 1、由主应用路由往微应用跳转不生效,微应用内路由跳转失效（主、微都是hash模式）
+### 1、由主应用路由往微应用跳转不生效,微应用内路由跳转失效
 - 主应用和微应用挂载的dom节点最好不一致,例主为`#app`,微为`#baseApp`
 - 在主应用配置`activeRule: '#/mom/'`，微应用的所有路由需在`/mom`下，就会被拦截
 ```js
@@ -29,3 +29,18 @@ chainWebpack: config => {
     entry.add("@/main.js").end();
 }
 ```
+
+### 4、子应用跳转至主应用user页面
+注意: 在跳转过程中不能使用路由跳转,会被当前应用路由守卫拦截,所以采用原生路由修改方式实现跳转
+- history模式
+```js
+window.history.pushState({}, "", "/user");
+```
+- hash模式
+```js
+if (window.__POWERED_BY_QIANKUN__) {
+  window.location.hash = "/user";
+  window.location.reload();
+ }
+```
+
