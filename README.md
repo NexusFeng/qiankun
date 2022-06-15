@@ -2,7 +2,7 @@
 ## 项目落地问题汇总
 
 ### 1、由主应用路由往微应用跳转不生效,微应用内路由跳转失效
-- 主应用和微应用挂载的dom节点最好不一致,例主为`#app`,微为`#baseApp`
+- 主应用和微应用挂载的dom节点最好不一致,例主为`#app`,微为`#baseApp`,也可参考<a href="https://qiankun.umijs.org/zh/guide/tutorial#vue-%E5%BE%AE%E5%BA%94%E7%94%A8">官网方式</a>
 - 在主应用配置`activeRule: '#/mom/'`，微应用的所有路由需在`/mom`下，就会被拦截
 ```js
 {
