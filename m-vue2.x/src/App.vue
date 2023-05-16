@@ -5,8 +5,23 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
+    <test></test>
   </div>
 </template>
+<script>
+import test from './views/test.vue'
+export default {
+  data(){
+    return {
+
+    }
+  },
+  components: {
+    test
+  }
+}
+</script>
+
 
 <style>
 #app {

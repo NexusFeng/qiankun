@@ -1,5 +1,6 @@
 <template>
   <div>
+    <test></test>
     <el-menu :router="true" mode="horizontal">
       <el-menu-item index="/">home</el-menu-item>
       <el-menu-item index="/vue">vue项目</el-menu-item>
@@ -12,8 +13,13 @@
 </template>
 
 <script>
+import test from './views/test.vue'
+
 export default {
   name: "App",
+  components: {
+    test
+  }
 };
 </script>
 

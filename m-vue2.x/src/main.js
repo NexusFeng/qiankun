@@ -3,8 +3,16 @@ import App from './App.vue'
 import router from './router'
 
 // Vue.config.productionTip = false;
+const files = require.context('./views', true, /\.vue$/);
+const vueFiles = files.keys()
+console.log(vueFiles, 'vueFiles')
 let instance = null
 function render(props) {
+  vueFiles.forEach(item => {
+    if(props.checkFilesName.includes(item)) {
+      console.error(`该【${item}】模块与主应用存在名称冲突，请及时修改，否则会造成样式冲突！`)
+    }
+  })
   instance = new Vue({
     router,
     render: (h) => h(App),
@@ -20,7 +28,6 @@ if (!window.__POWERED_BY_QIANKUN__) {
 }
 export async function bootstrap() {}
 export async function mount(props) {
-  console.log(props)
   render(props)
 }
 export async function unmount() {
