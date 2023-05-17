@@ -5,7 +5,6 @@ import router from './router'
 // Vue.config.productionTip = false;
 const files = require.context('./views', true, /\.vue$/);
 const vueFiles = files.keys()
-console.log(vueFiles, 'vueFiles')
 let instance = null
 function render(props) {
   vueFiles.forEach(item => {
@@ -16,7 +15,7 @@ function render(props) {
   instance = new Vue({
     router,
     render: (h) => h(App),
-  }).$mount('#app') // 挂载到自己的html 基座拿到这个挂载后的html 将其插入
+  }).$mount('#app') 
 }
 if (window.__POWERED_BY_QIANKUN__) {
   // 动态添加publicPath

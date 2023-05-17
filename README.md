@@ -52,6 +52,21 @@ if (window.__POWERED_BY_QIANKUN__) {
 解决: 在主应用`main.js`重新注册一次子应用,或者将登录动态注册改为主引用加载时注册,或者在登录后将相关注册信息存在vuex中
 
 采用的解决方式: 利用刷行页面Vuex状态会丢失的特性，设置一个标识就可以标识是否第一次进入，在进入微应用的时候将页面tag存起来放在本地缓存里，路由拦截里调用next函数，path是tag路径并将标识设置为fasle
+
+## 6、开发环境下主子应用样式冲突
+由于vue-loader开发环境下style scoped属性的hash计算根据文件名+相对路径得到，所以当文件名和相对路径一样时就会冲突
+
+解决: 起主应用时将文件目录传给子应用，子应用做查重
+
+## 7、主应用切换路由时，子应用路由无法切换
+
+主应用跳转时手动dispatch一下
+```js
+const pushState = () => {
+  const event = new Event('hashchange');
+  window.dispatchEvent(event);
+}
+```
   
   
   
